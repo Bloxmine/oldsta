@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Billabong', cursive;
+}
+.container {
+    text-align: center;
+}
+.header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, #527fa4, #326189);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.header h1 {
+    background: linear-gradient(180deg, #e8eef2, #b9cad7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+/* background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+canvas {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border: 1px solid #ccc;
+}
+
+#canvas-container {
+    max-width: 800px; /* Set your desired maximum width */
+    max-height: 600px; /* Set your desired maximum height */
+    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas {
+    width: 100%; /* Scale the canvas to fit the container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@font-face {
+    font-family: 'Billabong';
+    src: url('logo.ttf') format('truetype');
+}
