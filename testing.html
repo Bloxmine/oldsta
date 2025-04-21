@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oldstagram | Classic filters</title>
+    <link rel="stylesheet" href="dist/instagram.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-family: 'Billabong', cursive;
+}
+.container {
+    text-align: center;
+}
+.header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(180deg, #527fa4, #326189);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.header h1 {
+    background: linear-gradient(180deg, #e8eef2, #b9cad7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+/* background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent; */
+canvas {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border: 1px solid #ccc;
+}
+
+#canvas-container {
+    max-width: 800px;
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas {
+    width: 100%;
+    height: auto;
+}
+.filter-list {
+    margin: 20px 0;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+    max-width: 500px;
+    scroll-snap-type: x mandatory;
+}
+
+.filter-button {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    scroll-snap-align: center;
+}
+
+.filter-button:hover {
+    transform: scale(1.1);
+}
+
+.filter-button:focus {
+    outline: 2px solid #007BFF;
+}
+
+@font-face {
+    font-family: 'Billabong';
+    src: url('logo.ttf') format('truetype');
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Oldstagram</h1>
+    </div>
+    <div class="container">
+        <p>Welcome to Oldstagram! Here you can apply classic filters to your photos.</p>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" id="image-input" accept="image/*" required>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="filters" class="filter-list">
+            <p>Choose a filter:</p>
+            <div class="filter-buttons">
+                <button class="filter-button" data-filter="filter-1977" style="background-image: url('filters/1977.jpg');" title="1977"></button>
+                <button class="filter-button" data-filter="filter-aden" style="background-image: url('filters/aden.jpg');" title="Aden"></button>
+                <button class="filter-button" data-filter="filter-amaro" style="background-image: url('filters/amaro.jpg');" title="Amaro"></button>
+                <button class="filter-button" data-filter="filter-ashby" style="background-image: url('filters/ashby.jpg');" title="Ashby"></button>
+                <button class="filter-button" data-filter="filter-brannan" style="background-image: url('filters/brannan.jpg');" title="Brannan"></button>
+                <button class="filter-button" data-filter="filter-brooklyn" style="background-image: url('filters/brooklyn.jpg');" title="Brooklyn"></button>
+                <button class="filter-button" data-filter="filter-charmes" style="background-image: url('filters/charmes.jpg');" title="Charmes"></button>
+                <button class="filter-button" data-filter="filter-clarendon" style="background-image: url('filters/clarendon.jpg');" title="Clarendon"></button>
+                <button class="filter-button" data-filter="filter-crema" style="background-image: url('filters/crema.jpg');" title="Crema"></button>
+                <button class="filter-button" data-filter="filter-dogpatch" style="background-image: url('filters/dogpatch.jpg');" title="Dogpatch"></button>
+                <button class="filter-button" data-filter="filter-earlybird" style="background-image: url('filters/earlybird.jpg');" title="Earlybird"></button>
+                <button class="filter-button" data-filter="filter-gingham" style="background-image: url('filters/gingham.jpg');" title="Gingham"></button>
+                <button class="filter-button" data-filter="filter-ginza" style="background-image: url('filters/ginza.jpg');" title="Ginza"></button>
+                <button class="filter-button" data-filter="filter-hefe" style="background-image: url('filters/hefe.jpg');" title="Hefe"></button>
+                <button class="filter-button" data-filter="filter-helena" style="background-image: url('filters/helena.jpg');" title="Helena"></button>
+                <button class="filter-button" data-filter="filter-hudson" style="background-image: url('filters/hudson.jpg');" title="Hudson"></button>
+                <button class="filter-button" data-filter="filter-inkwell" style="background-image: url('filters/inkwell.jpg');" title="Inkwell"></button>
+                <button class="filter-button" data-filter="filter-kelvin" style="background-image: url('filters/kelvin.jpg');" title="Kelvin"></button>
+                <button class="filter-button" data-filter="filter-juno" style="background-image: url('filters/juno.jpg');" title="Juno"></button>
+                <button class="filter-button" data-filter="filter-lark" style="background-image: url('filters/lark.jpg');" title="Lark"></button>
+                <button class="filter-button" data-filter="filter-lofi" style="background-image: url('filters/lofi.jpg');" title="Lo-Fi"></button>
+                <button class="filter-button" data-filter="filter-ludwig" style="background-image: url('filters/ludwig.jpg');" title="Ludwig"></button>
+                <button class="filter-button" data-filter="filter-maven" style="background-image: url('filters/maven.jpg');" title="Maven"></button>
+                <button class="filter-button" data-filter="filter-mayfair" style="background-image: url('filters/mayfair.jpg');" title="Mayfair"></button>
+                <button class="filter-button" data-filter="filter-moon" style="background-image: url('filters/moon.jpg');" title="Moon"></button>
+                <button class="filter-button" data-filter="filter-nashville" style="background-image: url('filters/nashville.jpg');" title="Nashville"></button>
+                <button class="filter-button" data-filter="filter-perpetua" style="background-image: url('filters/perpetua.jpg');" title="Perpetua"></button>
+                <button class="filter-button" data-filter="filter-poprocket" style="background-image: url('filters/poprocket.jpg');" title="Poprocket"></button>
+                <button class="filter-button" data-filter="filter-reyes" style="background-image: url('filters/reyes.jpg');" title="Reyes"></button>
+                <button class="filter-button" data-filter="filter-rise" style="background-image: url('filters/rise.jpg');" title="Rise"></button>
+                <button class="filter-button" data-filter="filter-sierra" style="background-image: url('filters/sierra.jpg');" title="Sierra"></button>
+                <button class="filter-button" data-filter="filter-skyline" style="background-image: url('filters/skyline.jpg');" title="Skyline"></button>
+                <button class="filter-button" data-filter="filter-slumber" style="background-image: url('filters/slumber.jpg');" title="Slumber"></button>
+                <button class="filter-button" data-filter="filter-stinson" style="background-image: url('filters/stinson.jpg');" title="Stinson"></button>
+                <button class="filter-button" data-filter="filter-sutro" style="background-image: url('filters/sutro.jpg');" title="Sutro"></button>
+                <button class="filter-button" data-filter="filter-toaster" style="background-image: url('filters/toaster.jpg');" title="Toaster"></button>
+                <button class="filter-button" data-filter="filter-valencia" style="background-image: url('filters/valencia.jpg');" title="Valencia"></button>
+                <button class="filter-button" data-filter="filter-vesper" style="background-image: url('filters/vesper.jpg');" title="Vesper"></button>
+                <button class="filter-button" data-filter="filter-walden" style="background-image: url('filters/walden.jpg');" title="Walden"></button>
+                <button class="filter-button" data-filter="filter-willow" style="background-image: url('filters/willow.jpg');" title="Willow"></button>
+                <button class="filter-button" data-filter="filter-xpro-ii" style="background-image: url('filters/xpro-ii.jpg');" title="X-Pro II"></button>
+            </div>
+        </div>
+        <div id="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <button id="download-button">Download Filtered Image</button>
+    </div>
+</body>
+<script>
+    const uploadForm = document.getElementById('upload-form');
+    const imageInput = document.getElementById('image-input');
+    const canvas = document.getElementById('canvas');
+    const canvasContainer = document.getElementById('canvas-container');
+    const ctx = canvas.getContext('2d');
+    let currentImage = null; // Store the uploaded image
+
+    const filterButtons = document.querySelectorAll('.filter-button');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedFilter = button.getAttribute('data-filter');
+
+            // Remove any existing filter classes
+            canvasContainer.className = '';
+            // Add the selected filter class
+            canvasContainer.classList.add(selectedFilter);
+
+            // Redraw the image with the filter applied
+            if (currentImage) {
+                applyFilterAndRedraw();
+            }
+        });
+    });
+
+    uploadForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission
+        console.log('Form submission prevented'); // Debugging log
+
+        const file = imageInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    // Store the uploaded image
+                    currentImage = img;
+
+                    // Resize canvas to match the image dimensions
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    // Draw the image onto the canvas
+                    applyFilterAndRedraw();
+                };
+                img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select an image to upload.');
+        }
+    });
+
+    const downloadButton = document.getElementById('download-button');
+
+    downloadButton.addEventListener('click', () => {
+        if (!currentImage) {
+            alert('Please upload an image first.');
+            return;
+        }
+
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.download = 'filtered-image.png'; // Set the file name
+        link.href = canvas.toDataURL('image/png'); // Convert canvas to a data URL
+        link.click(); // Trigger the download
+    });
+
+    function applyFilterAndRedraw() {
+        // Get the selected filter
+        const selectedFilter = getComputedStyle(canvasContainer).filter;
+
+        // Apply the filter to the canvas context
+        ctx.filter = selectedFilter;
+
+        // Clear the canvas and redraw the image with the filter
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(currentImage, 0, 0);
+
+        // Reset the filter for future operations
+        ctx.filter = 'none';
+    }
+
+    // Enable horizontal scrolling with the vertical scroll wheel
+    const filterButtonsContainer = document.querySelector('.filter-buttons');
+
+    filterButtonsContainer.addEventListener('wheel', (event) => {
+        event.preventDefault(); // Prevent the default vertical scroll behavior
+        filterButtonsContainer.scrollLeft += event.deltaY; // Scroll horizontally
+    });
+</script>
+</html>
