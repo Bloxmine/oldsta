@@ -1,7 +1,7 @@
 :root {
     --background-color: #ffffff;
     --background-body-color: linear-gradient(180deg, #d8e2ea, #ffffff);
-    --text-color: #333;
+    --text-color: #dde6ed;
     --header-gradient-start: #527fa4;
     --header-gradient-end: #326189;
     --header-text-gradient-start: #e8eef2;
@@ -179,8 +179,25 @@ canvas {
 #image-input {
     display: none;
 }
-
+/* image instead of text */
 #image-input-label {
+    background-image: url('images/upload.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 132px;
+    height: 125px;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#uploadtext {
+    color: var(--text-color);
+
+}
+
+/* #image-input-label {
     background-image: linear-gradient(180deg, var(--header-gradient-start), var(--header-gradient-end));
     color: white;
     border: none;
@@ -201,8 +218,8 @@ canvas {
     background-color: var(--header-gradient-end);
     background-image: linear-gradient(180deg, var(--header-gradient-end), var(--header-gradient-start));
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 10px 2px;
-}
-#upload-form {
+} */
+/* #upload-form {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -211,25 +228,20 @@ canvas {
     gap: 150px;
 }
 #upload-form button {
-    background-image: linear-gradient(180deg, var(--header-gradient-start), var(--header-gradient-end));
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border-radius: 5px;
+    all: unset;
+    background-image: url('images/upload.png');
+    background-size: cover;
+    background-position: center;
+    display: block;
+    width: 64px; 
+    height: 50px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 5px 2px;
-    outline: 2px solid var(--header-text-gradient-end);
-    outline-offset: -2px;
+    transition: transform 0.3s ease;
 }
 
 #upload-form button:hover {
-    background-color: var(--header-gradient-end);
-    background-image: linear-gradient(180deg, var(--header-gradient-end), var(--header-gradient-start));
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 10px 2px;
-}
+    transform: scale(1.1);
+} */
 /* filter buttons should remain in a single line on small screens */
 @media (max-width: 768px) {
     .filter-buttons {
@@ -281,17 +293,6 @@ canvas {
     }
     #image-input-label {
         padding: 8px 16px;
-    }
-    #upload-form {
-        flex-direction: row;
-        align-items: center;
-        gap: 50px;
-    }
-    #upload-form button {
-        padding: 8px 16px;
-    }
-    #upload-form input[type="file"] {
-        margin-top: 10px;
     }
 
 }
