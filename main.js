@@ -1,10 +1,11 @@
+// Author: Hein Dijstelbloem, 22-04-2025
 // safari doesn't support the filter property on canvas, so we need to use a workaround
 // working on that...
 const imageInput = document.getElementById('image-input');
 const canvas = document.getElementById('canvas');
 const canvasContainer = document.getElementById('canvas-container');
 const ctx = canvas.getContext('2d');
-let currentImage = null; // store the uploaded image
+let currentImage = 0;
 
 const filterButtons = document.querySelectorAll('.filter-button');
 
@@ -24,6 +25,8 @@ filterButtons.forEach(button => {
     });
 });
 
+// file reader courtesy of https://developer.mozilla.org/en-US/docs/Web/API/FileReader
+// and some stackoverflow magic
 imageInput.addEventListener('change', () => {
     const file = imageInput.files[0];
     if (file) {
@@ -32,7 +35,7 @@ imageInput.addEventListener('change', () => {
         reader.onload = (e) => {
             const img = new Image();
             img.onload = () => {
-                // create an offscreen canvas to crop the image, this is to avoid resizing the image for now
+                // create an offscreen canvas to crop the image, this is to avoid resizing the image
                 const offscreenCanvas = document.createElement('canvas');
                 const offscreenCtx = offscreenCanvas.getContext('2d');
 

@@ -93,8 +93,8 @@ canvas {
 
 .filter-list {
     margin: 20px 0;
-    position: relative; /* Ensure pseudo-elements are positioned relative to this container */
-    overflow: hidden; /* Hide the pseudo-elements outside the container */
+    position: relative;
+    overflow: hidden; 
 }
 
 .filter-list::before,
@@ -103,9 +103,9 @@ canvas {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 30px; /* Adjust width as needed */
-    pointer-events: none; /* Allow interaction with the scrollable content */
-    z-index: 1; /* Ensure it appears above the content */
+    width: 30px;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .filter-list::before {
@@ -179,7 +179,6 @@ canvas {
 #image-input {
     display: none;
 }
-/* image instead of text */
 #image-input-label {
     background-image: url('images/upload.png');
     background-size: cover;
