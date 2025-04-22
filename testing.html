@@ -61,8 +61,8 @@ canvas {
 }
 
 #canvas-container {
-    max-width: 800px;
-    max-height: 600px;
+    max-width: 512px;
+    max-height: 512px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -217,15 +217,49 @@ canvas {
             reader.onload = (e) => {
                 const img = new Image();
                 img.onload = () => {
-                    // Store the uploaded image
-                    currentImage = img;
+                    // Create an offscreen canvas to crop the image
+                    const offscreenCanvas = document.createElement('canvas');
+                    const offscreenCtx = offscreenCanvas.getContext('2d');
 
-                    // Resize canvas to match the image dimensions
-                    canvas.width = img.width;
-                    canvas.height = img.height;
+                    // Set the desired square dimensions
+                    const squareSize = 512;
+                    offscreenCanvas.width = squareSize;
+                    offscreenCanvas.height = squareSize;
 
-                    // Draw the image onto the canvas
-                    applyFilterAndRedraw();
+                    // Calculate cropping dimensions to center the image
+                    const aspectRatio = img.width / img.height;
+                    let cropWidth, cropHeight, startX, startY;
+
+                    if (aspectRatio > 1) {
+                        // Image is wider than tall
+                        cropWidth = img.height;
+                        cropHeight = img.height;
+                        startX = (img.width - cropWidth) / 2;
+                        startY = 0;
+                    } else {
+                        // Image is taller than wide or square
+                        cropWidth = img.width;
+                        cropHeight = img.width;
+                        startX = 0;
+                        startY = (img.height - cropHeight) / 2;
+                    }
+
+                    // Draw the cropped image onto the offscreen canvas
+                    offscreenCtx.drawImage(img, startX, startY, cropWidth, cropHeight, 0, 0, squareSize, squareSize);
+
+                    // Store the cropped image as the current image
+                    const croppedImage = new Image();
+                    croppedImage.onload = () => {
+                        currentImage = croppedImage;
+
+                        // Resize the main canvas to match the square dimensions
+                        canvas.width = squareSize;
+                        canvas.height = squareSize;
+
+                        // Draw the cropped image onto the main canvas
+                        applyFilterAndRedraw();
+                    };
+                    croppedImage.src = offscreenCanvas.toDataURL();
                 };
                 img.src = e.target.result;
             };
@@ -251,6 +285,14 @@ canvas {
         link.click(); // Trigger the download
     });
 
+    // Define a mapping of filters to overlay images
+    const filterOverlays = {
+        'filter-kelvin': 'overlays/kelvin.png',
+        'filter-earlybird': 'overlays/earlybird.png',
+        'filter-xpro-ii': 'overlays/xpro.png',
+    };
+
+    // Update the applyFilterAndRedraw function
     function applyFilterAndRedraw() {
         // Get the selected filter
         const selectedFilter = getComputedStyle(canvasContainer).filter;
@@ -261,6 +303,17 @@ canvas {
         // Clear the canvas and redraw the image with the filter
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(currentImage, 0, 0);
+
+        // Check if the selected filter has an overlay
+        const overlayPath = filterOverlays[canvasContainer.className];
+        if (overlayPath) {
+            const overlayImage = new Image();
+            overlayImage.onload = () => {
+                // Draw the overlay on top of the canvas
+                ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+            };
+            overlayImage.src = overlayPath;
+        }
 
         // Reset the filter for future operations
         ctx.filter = 'none';
