@@ -78,6 +78,11 @@ The following classic filters are available:
 
 No special setup is required. Simply open the `index.html` file in your web browser to start using Oldstagram.
 
+## Known Issues
+* Due to limitations in the CSS filter implementation, some filters may not look exactly like their Instagram counterparts.
+* In Safari, the filters may not work as expected. This is a known issue with the CSS filter implementation in Safari. However, a workaround is implemented by using a custom library, 'context filter polyfill'
+* Exporting images may not look the same as the preview due to differences in how browsers handle CSS filters and image rendering. AFAIK this is something that is finicky with canvas.
+
 ## Contributing
 
 ## License
