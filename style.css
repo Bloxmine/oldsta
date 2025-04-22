@@ -93,6 +93,29 @@ canvas {
 
 .filter-list {
     margin: 20px 0;
+    position: relative; /* Ensure pseudo-elements are positioned relative to this container */
+    overflow: hidden; /* Hide the pseudo-elements outside the container */
+}
+
+.filter-list::before,
+.filter-list::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px; /* Adjust width as needed */
+    pointer-events: none; /* Allow interaction with the scrollable content */
+    z-index: 1; /* Ensure it appears above the content */
+}
+
+.filter-list::before {
+    left: 0;
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+}
+
+.filter-list::after {
+    right: 0;
+    background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
 }
 
 .filter-buttons {
