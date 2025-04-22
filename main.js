@@ -90,10 +90,17 @@ imageInput.addEventListener('change', () => {
 
 // these are the overlays for the filters which require them
 const filterOverlays = {
+    'filter-1977': 'overlays/1977.png',
+    'filter-joaster': 'overlays/1977.png',
+    'filter-inkwell': 'overlays/1977.png',
     'filter-kelvin': 'overlays/kelvin.png',
     'filter-earlybird': 'overlays/earlybird.png',
     'filter-xpro-ii': 'overlays/xpro.png',
     'filter-nashville': 'overlays/nashville.png',
+    'filter-walder': 'overlays/walden.png',
+    'filder-hefe': 'overlays/walden.png',
+    'filter-sutro': 'overlays/walden.png',
+    'filter-brannan': 'overlays/brannan.png',
 };
 
 // this function applies the selected filter and redraws the image
@@ -101,14 +108,18 @@ function applyFilterAndRedraw() {
     // finds the selected filter
     const selectedFilter = getComputedStyle(canvasContainer).filter;
 
+    // clears the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     // applies the filter to the canvas context
     ctx.filter = selectedFilter;
 
-    // clears the canvas and redraw the image with the filter
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // draws the image with the filter applied
     ctx.drawImage(currentImage, 0, 0);
 
-    // checks if the selected filter has an overlay
+    // reset the filter so it doesn't affect the overlay
+    ctx.filter = 'none';
+
     const overlayPath = filterOverlays[canvasContainer.className];
     if (overlayPath) {
         const overlayImage = new Image();
@@ -118,10 +129,8 @@ function applyFilterAndRedraw() {
         };
         overlayImage.src = overlayPath;
     }
-
-    // reset the filter
-    ctx.filter = 'none';
 }
+
 
 const downloadButton = document.getElementById('download-button');
 
