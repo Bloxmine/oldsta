@@ -5,128 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oldstagram | Classic filters</title>
     <link rel="stylesheet" href="dist/instagram.css">
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-    display: grid;
-    place-items: center;
-    height: 100vh;
-}
-h1 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    font-family: 'Billabong', cursive;
-}
-.container {
-    text-align: center;
-}
-.header {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    background: linear-gradient(180deg, #527fa4, #326189);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    padding: 10px 0;
-}
-
-.header h1 {
-    background: linear-gradient(180deg, #e8eef2, #b9cad7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2.5em;
-    margin: 0;
-}
-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.8em;
-    color: #c6c6c6;
-}
-/* background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent; */
-canvas {
-    display: block;
-    margin: 20px auto;
-    max-width: 100%;
-    border: 1px solid #ccc;
-}
-
-#canvas-container {
-    max-width: 512px;
-    max-height: 512px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#canvas {
-    width: 100%;
-    height: auto;
-}
-.filter-list {
-    margin: 20px 0;
-}
-
-.filter-buttons {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    padding: 10px;
-    overflow-x: auto;
-    max-width: 500px;
-    scroll-snap-type: x mandatory;
-}
-
-.filter-button {
-    flex: 0 0 auto;
-    width: 80px;
-    height: 80px;
-    background-size: cover;
-    background-position: center;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-    scroll-snap-align: center;
-}
-
-.filter-button:hover {
-    transform: scale(1.1);
-}
-
-.filter-button:focus {
-    outline: 2px solid #007BFF;
-}
-
-@font-face {
-    font-family: 'Billabong';
-    src: url('logo.ttf') format('truetype');
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/context-filter-polyfill/dist/index.min.js" defer></script>\
+    <script src="main.js" defer></script>
+</head>
 </head>
 <body>
     <div class="header">
         <h1>Oldstagram</h1>
     </div>
     <div class="container">
-        <p>Welcome to Oldstagram! Here you can apply classic filters to your photos.</p>
         <form id="upload-form" enctype="multipart/form-data">
             <input type="file" id="image-input" accept="image/*" required>
-            <button type="submit">Upload</button>
+            <label for="image-input" id="image-input-label">Choose File</label>
+            <button type="submit">Upload!</button>
         </form>
         <div id="filters" class="filter-list">
-            <p>Choose a filter:</p>
             <div class="filter-buttons">
                 <button class="filter-button" data-filter="filter-1977" style="background-image: url('filters/1977.jpg');" title="1977"></button>
                 <button class="filter-button" data-filter="filter-aden" style="background-image: url('filters/Aden.jpg');" title="Aden"></button>
@@ -174,173 +68,10 @@ canvas {
         <div id="canvas-container">
             <canvas id="canvas"></canvas>
         </div>
-        <button id="download-button">Download Filtered Image</button>
+        <button id="download-button">Download Image</button>
     </div>
     <footer>
         <p>Oldstagram &copy; 2025</p>
-        <p>Made with love by heind_</p>
+        <p>Made for fun by heind_</p>
 </body>
-<script>
-    // safari doesn't support the filter property on canvas, so we need to use a workaround
-    // working on that...
-    const uploadForm = document.getElementById('upload-form');
-    const imageInput = document.getElementById('image-input');
-    const canvas = document.getElementById('canvas');
-    const canvasContainer = document.getElementById('canvas-container');
-    const ctx = canvas.getContext('2d');
-    let currentImage = null; // Store the uploaded image
-
-    const filterButtons = document.querySelectorAll('.filter-button');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const selectedFilter = button.getAttribute('data-filter');
-
-            // Remove any existing filter classes
-            canvasContainer.className = '';
-            // Add the selected filter class
-            canvasContainer.classList.add(selectedFilter);
-
-            // Redraw the image with the filter applied
-            if (currentImage) {
-                applyFilterAndRedraw();
-            }
-        });
-    });
-
-    uploadForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // prevent form submission
-        console.log('Form submission prevented'); // Debugging log
-
-        const file = imageInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    // create an offscreen canvas to crop the image, this is to avoid resizing the image for now
-                    const offscreenCanvas = document.createElement('canvas');
-                    const offscreenCtx = offscreenCanvas.getContext('2d');
-
-                    // sets the desired square dimensions
-                    const squareSize = 512;
-                    offscreenCanvas.width = squareSize;
-                    offscreenCanvas.height = squareSize;
-
-                    // calculate cropping dimensions to center the image
-                    const aspectRatio = img.width / img.height;
-                    let cropWidth, cropHeight, startX, startY;
-
-                    if (aspectRatio > 1) {
-                        // when the image is wider than tall
-                        cropWidth = img.height;
-                        cropHeight = img.height;
-                        startX = (img.width - cropWidth) / 2;
-                        startY = 0;
-                    } else {
-                        // when the image is taller than wide or square
-                        cropWidth = img.width;
-                        cropHeight = img.width;
-                        startX = 0;
-                        startY = (img.height - cropHeight) / 2;
-                    }
-
-                    // draws the cropped image onto the offscreen canvas
-                    offscreenCtx.drawImage(img, startX, startY, cropWidth, cropHeight, 0, 0, squareSize, squareSize);
-
-                    // stores the cropped image as the current image
-                    const croppedImage = new Image();
-                    croppedImage.onload = () => {
-                        currentImage = croppedImage;
-
-                        // resizes the main canvas to match the square dimensions
-                        canvas.width = squareSize;
-                        canvas.height = squareSize;
-
-                        // draws the cropped image onto the main canvas
-                        applyFilterAndRedraw();
-                    };
-                    croppedImage.src = offscreenCanvas.toDataURL();
-                };
-                img.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            alert('Please select an image to upload.');
-        }
-    });
-
-    // these are the overlays for the filters which require them
-    const filterOverlays = {
-        'filter-kelvin': 'overlays/kelvin.png',
-        'filter-earlybird': 'overlays/earlybird.png',
-        'filter-xpro-ii': 'overlays/xpro.png',
-        'filter-nashville': 'overlays/nashville.png',
-    };
-
-    // this function applies the selected filter and redraws the image
-    function applyFilterAndRedraw() {
-        console.log('Applying filter and redrawing...');
-
-        // finds the selected filter
-        const selectedFilter = getComputedStyle(canvasContainer).filter;
-        console.log('Selected filter:', selectedFilter);
-
-        // applies the filter to the canvas context
-        ctx.filter = selectedFilter;
-
-        // clears the canvas and redraw the image with the filter
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(currentImage, 0, 0);
-        console.log('Image redrawn on canvas with filter.');
-
-        // checks if the selected filter has an overlay
-        const overlayPath = filterOverlays[canvasContainer.className];
-        if (overlayPath) {
-            console.log('Overlay found for filter:', overlayPath);
-            const overlayImage = new Image();
-            overlayImage.onload = () => {
-                // draw the overlay on top of the canvas
-                ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
-                console.log('Overlay applied to canvas.');
-            };
-            overlayImage.src = overlayPath;
-        } else {
-            console.log('No overlay found for the selected filter.');
-        }
-
-        // reset the filter
-        ctx.filter = 'none';
-        console.log('Filter reset to none.');
-    }
-
-    const downloadButton = document.getElementById('download-button');
-
-    downloadButton.addEventListener('click', () => {
-        if (!currentImage) {
-            alert('Please upload an image first.');
-            return;
-        }
-
-        console.log('Preparing to download the filtered image...');
-        console.log('Canvas content before download:', canvas.toDataURL('image/png'));
-
-        // create a temporary link element, this should be changed to a download button
-        const link = document.createElement('a');
-        link.download = 'filtered-image.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click(); // trigger the download
-        console.log('Download triggered.');
-    });
-
-    // this should probably be made better. I don't know how this'll function on mobile
-    const filterButtonsContainer = document.querySelector('.filter-buttons');
-
-    filterButtonsContainer.addEventListener('wheel', (event) => {
-        event.preventDefault(); // prevent the default vertical scroll behavior
-        filterButtonsContainer.scrollLeft += event.deltaY; // scroll horizontally
-    });
-</script>
 </html>
