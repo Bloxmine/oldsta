@@ -3,125 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oldstagram | Live Filters</title>
+    <title>Oldstagram | Classic filters</title>
     <link rel="stylesheet" href="dist/instagram.css">
     <link rel="stylesheet" href="style.css">
+    <!-- this is for Safari -->
+    <script src="https://cdn.jsdelivr.net/npm/context-filter-polyfill/dist/index.min.js" defer></script>
+    <script src="webcam.js" defer></script>
+</head>
 </head>
 <body>
     <div class="header">
         <h1>Oldstagram</h1>
     </div>
     <div class="container">
-        <p>Welcome to Oldstagram! Apply classic filters live to your webcam feed.</p>
-        <div id="filters">
-            <label for="filter-select">Choose a filter:</label>
-            <select id="filter-select">
-                <option value="filter-1977">1977</option>
-                <option value="filter-aden">Aden</option>
-                <option value="filter-amaro">Amaro</option>
-                <option value="filter-ashby">Ashby</option>
-                <option value="filter-brannan">Brannan</option>
-                <option value="filter-brooklyn">Brooklyn</option>
-                <option value="filter-charmes">Charmes</option>
-                <option value="filter-clarendon">Clarendon</option>
-                <option value="filter-crema">Crema</option>
-                <option value="filter-dogpatch">Dogpatch</option>
-                <option value="filter-earlybird">Earlybird</option>
-                <option value="filter-gingham">Gingham</option>
-                <option value="filter-ginza">Ginza</option>
-                <option value="filter-hefe">Hefe</option>
-                <option value="filter-helena">Helena</option>
-                <option value="filter-hudson">Hudson</option>
-                <option value="filter-inkwell">Inkwell</option>
-                <option value="filter-kelvin">Kelvin</option>
-                <option value="filter-juno">Kuno</option>
-                <option value="filter-lark">Lark</option>
-                <option value="filter-lofi">Lo-Fi</option>
-                <option value="filter-ludwig">Ludwig</option>
-                <option value="filter-maven">Maven</option>
-                <option value="filter-mayfair">Mayfair</option>
-                <option value="filter-moon">Moon</option>
-                <option value="filter-nashville">Nashville</option>
-                <option value="filter-perpetua">Perpetua</option>
-                <option value="filter-poprocket">Poprocket</option>
-                <option value="filter-reyes">Reyes</option>
-                <option value="filter-rise">Rise</option>
-                <option value="filter-sierra">Sierra</option>
-                <option value="filter-skyline">Skyline</option>
-                <option value="filter-slumber">Slumber</option>
-                <option value="filter-stinson">Stinson</option>
-                <option value="filter-sutro">Sutro</option>
-                <option value="filter-toaster">Toaster</option>
-                <option value="filter-valencia">Valencia</option>
-                <option value="filter-vesper">Vesper</option>
-                <option value="filter-walden">Walden</option>
-                <option value="filter-willow">Willow</option>
-                <option value="filter-xpro-ii">X-Pro II</option>
-            </select>
-        </div>
         <div id="canvas-container">
-            <video id="video" autoplay playsinline></video>
             <canvas id="canvas"></canvas>
         </div>
-        <button id="download-button">Download Filtered Image</button>
+        <div id="filters" class="filter-list">
+            <div class="filter-buttons">
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-1977" style="background-image: url('filters/1977.jpg');" title="1977"></button>
+                <span class="filter-name">1977</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-aden" style="background-image: url('filters/Aden.jpg');" title="Aden"></button>
+                <span class="filter-name">Aden</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-amaro" style="background-image: url('filters/Amaro.jpg');" title="Amaro"></button>
+                <span class="filter-name">Amaro</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ashby" style="background-image: url('filters/Ashby.jpg');" title="Ashby"></button>
+                <span class="filter-name">Ashby</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-brannan" style="background-image: url('filters/Brannan.jpg');" title="Brannan"></button>
+                <span class="filter-name">Brannan</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-brooklyn" style="background-image: url('filters/Brooklyn.jpg');" title="Brooklyn"></button>
+                <span class="filter-name">Brooklyn</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-charmes" style="background-image: url('filters/Charmes.jpg');" title="Charmes"></button>
+                <span class="filter-name">Charmes</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-clarendon" style="background-image: url('filters/Clarendon.jpg');" title="Clarendon"></button>
+                <span class="filter-name">Clarendon</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-crema" style="background-image: url('filters/Crema.jpg');" title="Crema"></button>
+                <span class="filter-name">Crema</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-dogpatch" style="background-image: url('filters/Dogpatch.jpg');" title="Dogpatch"></button>
+                <span class="filter-name">Dogpatch</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-earlybird" style="background-image: url('filters/Earlybird.jpg');" title="Earlybird"></button>
+                <span class="filter-name">Earlybird</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-gingham" style="background-image: url('filters/Gingham.jpg');" title="Gingham"></button>
+                <span class="filter-name">Gingham</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ginza" style="background-image: url('filters/Ginza.jpg');" title="Ginza"></button>
+                <span class="filter-name">Ginza</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-hefe" style="background-image: url('filters/Hefe.jpg');" title="Hefe"></button>
+                <span class="filter-name">Hefe</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-helena" style="background-image: url('filters/Helena.jpg');" title="Helena"></button>
+                <span class="filter-name">Helena</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-hudson" style="background-image: url('filters/Hudson.jpg');" title="Hudson"></button>
+                <span class="filter-name">Hudson</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-inkwell" style="background-image: url('filters/Inkwell.jpg');" title="Inkwell"></button>
+                <span class="filter-name">Inkwell</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-kelvin" style="background-image: url('filters/Kelvin.jpg');" title="Kelvin"></button>
+                <span class="filter-name">Kelvin</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-juno" style="background-image: url('filters/Juno.jpg');" title="Juno"></button>
+                <span class="filter-name">Juno</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-lark" style="background-image: url('filters/Lark.jpg');" title="Lark"></button>
+                <span class="filter-name">Lark</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-lofi" style="background-image: url('filters/lofi.jpg');" title="Lo-Fi"></button>
+                <span class="filter-name">Lo-Fi</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ludwig" style="background-image: url('filters/Ludwig.jpg');" title="Ludwig"></button>
+                <span class="filter-name">Ludwig</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-maven" style="background-image: url('filters/Maven.jpg');" title="Maven"></button>
+                <span class="filter-name">Maven</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-mayfair" style="background-image: url('filters/Mayfair.jpg');" title="Mayfair"></button>
+                <span class="filter-name">Mayfair</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-moon" style="background-image: url('filters/Moon.jpg');" title="Moon"></button>
+                <span class="filter-name">Moon</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-nashville" style="background-image: url('filters/Nashville.jpg');" title="Nashville"></button>
+                <span class="filter-name">Nashville</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-perpetua" style="background-image: url('filters/Perpetua.jpg');" title="Perpetua"></button>
+                <span class="filter-name">Perpetua</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-poprocket" style="background-image: url('filters/Poprocket.jpg');" title="Poprocket"></button>
+                <span class="filter-name">Poprocket</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-reyes" style="background-image: url('filters/Reyes.jpg');" title="Reyes"></button>
+                <span class="filter-name">Reyes</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-rise" style="background-image: url('filters/Rise.jpg');" title="Rise"></button>
+                <span class="filter-name">Rise</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-sierra" style="background-image: url('filters/Sierra.jpg');" title="Sierra"></button>
+                <span class="filter-name">Sierra</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-skyline" style="background-image: url('filters/Skyline.jpg');" title="Skyline"></button>
+                <span class="filter-name">Skyline</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-slumber" style="background-image: url('filters/Slumber.jpg');" title="Slumber"></button>
+                <span class="filter-name">Slumber</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-stinson" style="background-image: url('filters/Stinson.jpg');" title="Stinson"></button>
+                <span class="filter-name">Stinson</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-sutro" style="background-image: url('filters/Sutro.jpg');" title="Sutro"></button>
+                <span class="filter-name">Sutro</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-toaster" style="background-image: url('filters/Toaster.jpg');" title="Toaster"></button>
+                <span class="filter-name">Toaster</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-valencia" style="background-image: url('filters/Valencia.jpg');" title="Valencia"></button>
+                <span class="filter-name">Valencia</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-vesper" style="background-image: url('filters/Vesper.jpg');" title="Vesper"></button>
+                <span class="filter-name">Vesper</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-walden" style="background-image: url('filters/Walden.jpg');" title="Walden"></button>
+                <span class="filter-name">Walden</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-willow" style="background-image: url('filters/Willow.jpg');" title="Willow"></button>
+                <span class="filter-name">Willow</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-xpro-ii" style="background-image: url('filters/xpro.jpg');" title="X-Pro II"></button>
+                <span class="filter-name">X-Pro II</span>
+            </div>
+        </div>
+        </div>
     </div>
+    <div id="navbar-bottom">
+        <button id="start-webcam">Start Webcam</button>
+        <button id="stop-webcam">Stop Webcam</button>
+    </div>
+    <footer>
+        <p>Oldstagram &copy; 2025</p>
+        <p>Made for fun by heind_</p>
+    </footer>
 </body>
-<script>
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const canvasContainer = document.getElementById('canvas-container');
-    const filterSelect = document.getElementById('filter-select');
-    const ctx = canvas.getContext('2d');
-    const downloadButton = document.getElementById('download-button');
-
-    // Access the webcam
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-            video.srcObject = stream;
-        })
-        .catch((err) => {
-            console.error('Error accessing webcam:', err);
-            alert('Unable to access webcam. Please check your permissions.');
-        });
-
-    // Apply the selected filter to the video container
-    filterSelect.addEventListener('change', () => {
-        const selectedFilter = filterSelect.value;
-
-        // Remove any existing filter classes
-        canvasContainer.className = '';
-        // Add the selected filter class
-        canvasContainer.classList.add(selectedFilter);
-    });
-
-    // Draw the video feed onto the canvas
-    function drawVideoToCanvas() {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        // Draw the video frame onto the canvas
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Repeat the drawing process
-        requestAnimationFrame(drawVideoToCanvas);
-    }
-
-    video.addEventListener('play', () => {
-        drawVideoToCanvas();
-    });
-
-    // Download the current frame with the filter applied
-    downloadButton.addEventListener('click', () => {
-        if (!video.srcObject) {
-            alert('Webcam feed is not available.');
-            return;
-        }
-
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.download = 'filtered-image.png'; // Set the file name
-        link.href = canvas.toDataURL('image/png'); // Convert canvas to a data URL
-        link.click(); // Trigger the download
-    });
-</script>
 </html>

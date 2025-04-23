@@ -1,6 +1,6 @@
 # Oldstagram - 2012-era Photo Filters
 
-Welcome to Oldstagram! This simple web application allows you to upload an image and apply classic Instagram-like filters to it directly in your browser. Become your 2012 hipster self again with these iconic filters!
+This simple web application allows you to upload an image and apply classic Instagram-like filters to it directly in your browser. Become your 2012 hipster self again with these iconic filters!
 
 ## Features
 

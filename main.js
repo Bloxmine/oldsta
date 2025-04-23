@@ -110,6 +110,9 @@ const filterOverlays = {
     'filter-sutro': 'overlays/walden.png',
     'filter-brannan': 'overlays/brannan.png',
     'filter-poprocket': 'overlays/poprocket.png',
+    'filter-lofi': 'overlays/lofi.png',
+    'filter-willow': 'overlays/willow.png',
+    'filter-rise': 'overlays/rise.png',
 };
 
 // this function applies the selected filter and redraws the image
