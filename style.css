@@ -215,7 +215,6 @@ canvas {
 
 .filter-name.selected {
     font-weight: bold;
-    color: var(--focus-outline-color);
 }
 
 /* file upload bottom bar test */
@@ -361,8 +360,8 @@ canvas {
         gap: 0px;
     }
     #image-input-label {
-        width: 75px; 
-        height: 70px;
+        width: 64px; 
+        height: 60px;
         cursor: pointer;
         transition: transform 0.3s ease;
     }

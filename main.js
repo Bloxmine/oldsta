@@ -15,12 +15,12 @@ filterButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
         const selectedFilter = button.getAttribute('data-filter');
 
-        // Remove any existing filter classes
+        // remove any existing filter classes
         canvasContainer.className = '';
-        // Add the selected filter class
+        // add the selected filter class
         canvasContainer.classList.add(selectedFilter);
 
-        // Redraw the image with the filter applied
+        // redraw the image with the filter applied
         if (currentImage) {
             applyFilterAndRedraw();
         }
