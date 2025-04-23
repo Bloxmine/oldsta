@@ -15,63 +15,189 @@
         <h1>Oldstagram</h1>
     </div>
     <div class="container">
+        <div id="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="filters" class="filter-list">
+            <div class="filter-buttons">
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-1977" style="background-image: url('filters/1977.jpg');" title="1977"></button>
+                <span class="filter-name">1977</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-aden" style="background-image: url('filters/Aden.jpg');" title="Aden"></button>
+                <span class="filter-name">Aden</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-amaro" style="background-image: url('filters/Amaro.jpg');" title="Amaro"></button>
+                <span class="filter-name">Amaro</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ashby" style="background-image: url('filters/Ashby.jpg');" title="Ashby"></button>
+                <span class="filter-name">Ashby</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-brannan" style="background-image: url('filters/Brannan.jpg');" title="Brannan"></button>
+                <span class="filter-name">Brannan</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-brooklyn" style="background-image: url('filters/Brooklyn.jpg');" title="Brooklyn"></button>
+                <span class="filter-name">Brooklyn</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-charmes" style="background-image: url('filters/Charmes.jpg');" title="Charmes"></button>
+                <span class="filter-name">Charmes</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-clarendon" style="background-image: url('filters/Clarendon.jpg');" title="Clarendon"></button>
+                <span class="filter-name">Clarendon</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-crema" style="background-image: url('filters/Crema.jpg');" title="Crema"></button>
+                <span class="filter-name">Crema</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-dogpatch" style="background-image: url('filters/Dogpatch.jpg');" title="Dogpatch"></button>
+                <span class="filter-name">Dogpatch</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-earlybird" style="background-image: url('filters/Earlybird.jpg');" title="Earlybird"></button>
+                <span class="filter-name">Earlybird</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-gingham" style="background-image: url('filters/Gingham.jpg');" title="Gingham"></button>
+                <span class="filter-name">Gingham</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ginza" style="background-image: url('filters/Ginza.jpg');" title="Ginza"></button>
+                <span class="filter-name">Ginza</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-hefe" style="background-image: url('filters/Hefe.jpg');" title="Hefe"></button>
+                <span class="filter-name">Hefe</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-helena" style="background-image: url('filters/Helena.jpg');" title="Helena"></button>
+                <span class="filter-name">Helena</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-hudson" style="background-image: url('filters/Hudson.jpg');" title="Hudson"></button>
+                <span class="filter-name">Hudson</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-inkwell" style="background-image: url('filters/Inkwell.jpg');" title="Inkwell"></button>
+                <span class="filter-name">Inkwell</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-kelvin" style="background-image: url('filters/Kelvin.jpg');" title="Kelvin"></button>
+                <span class="filter-name">Kelvin</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-juno" style="background-image: url('filters/Juno.jpg');" title="Juno"></button>
+                <span class="filter-name">Juno</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-lark" style="background-image: url('filters/Lark.jpg');" title="Lark"></button>
+                <span class="filter-name">Lark</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-lofi" style="background-image: url('filters/lofi.jpg');" title="Lo-Fi"></button>
+                <span class="filter-name">Lo-Fi</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-ludwig" style="background-image: url('filters/Ludwig.jpg');" title="Ludwig"></button>
+                <span class="filter-name">Ludwig</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-maven" style="background-image: url('filters/Maven.jpg');" title="Maven"></button>
+                <span class="filter-name">Maven</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-mayfair" style="background-image: url('filters/Mayfair.jpg');" title="Mayfair"></button>
+                <span class="filter-name">Mayfair</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-moon" style="background-image: url('filters/Moon.jpg');" title="Moon"></button>
+                <span class="filter-name">Moon</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-nashville" style="background-image: url('filters/Nashville.jpg');" title="Nashville"></button>
+                <span class="filter-name">Nashville</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-perpetua" style="background-image: url('filters/Perpetua.jpg');" title="Perpetua"></button>
+                <span class="filter-name">Perpetua</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-poprocket" style="background-image: url('filters/Poprocket.jpg');" title="Poprocket"></button>
+                <span class="filter-name">Poprocket</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-reyes" style="background-image: url('filters/Reyes.jpg');" title="Reyes"></button>
+                <span class="filter-name">Reyes</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-rise" style="background-image: url('filters/Rise.jpg');" title="Rise"></button>
+                <span class="filter-name">Rise</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-sierra" style="background-image: url('filters/Sierra.jpg');" title="Sierra"></button>
+                <span class="filter-name">Sierra</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-skyline" style="background-image: url('filters/Skyline.jpg');" title="Skyline"></button>
+                <span class="filter-name">Skyline</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-slumber" style="background-image: url('filters/Slumber.jpg');" title="Slumber"></button>
+                <span class="filter-name">Slumber</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-stinson" style="background-image: url('filters/Stinson.jpg');" title="Stinson"></button>
+                <span class="filter-name">Stinson</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-sutro" style="background-image: url('filters/Sutro.jpg');" title="Sutro"></button>
+                <span class="filter-name">Sutro</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-toaster" style="background-image: url('filters/Toaster.jpg');" title="Toaster"></button>
+                <span class="filter-name">Toaster</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-valencia" style="background-image: url('filters/Valencia.jpg');" title="Valencia"></button>
+                <span class="filter-name">Valencia</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-vesper" style="background-image: url('filters/Vesper.jpg');" title="Vesper"></button>
+                <span class="filter-name">Vesper</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-walden" style="background-image: url('filters/Walden.jpg');" title="Walden"></button>
+                <span class="filter-name">Walden</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-willow" style="background-image: url('filters/Willow.jpg');" title="Willow"></button>
+                <span class="filter-name">Willow</span>
+            </div>
+            <div class="filter-item">
+                <button class="filter-button" data-filter="filter-xpro-ii" style="background-image: url('filters/xpro.jpg');" title="X-Pro II"></button>
+                <span class="filter-name">X-Pro II</span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="navbar-bottom">
         <form id="upload-form" enctype="multipart/form-data">
             <input type="file" id="image-input" accept="image/*" required>
             <label for="image-input" id="image-input-label"></label>
             <div id="uploadtext">Upload image</div>
         </form>
-        <div id="filters" class="filter-list">
-            <div class="filter-buttons">
-                <button class="filter-button" data-filter="filter-1977" style="background-image: url('filters/1977.jpg');" title="1977"></button>
-                <button class="filter-button" data-filter="filter-aden" style="background-image: url('filters/Aden.jpg');" title="Aden"></button>
-                <button class="filter-button" data-filter="filter-amaro" style="background-image: url('filters/Amaro.jpg');" title="Amaro"></button>
-                <button class="filter-button" data-filter="filter-ashby" style="background-image: url('filters/Ashby.jpg');" title="Ashby"></button>
-                <button class="filter-button" data-filter="filter-brannan" style="background-image: url('filters/Brannan.jpg');" title="Brannan"></button>
-                <button class="filter-button" data-filter="filter-brooklyn" style="background-image: url('filters/Brooklyn.jpg');" title="Brooklyn"></button>
-                <button class="filter-button" data-filter="filter-charmes" style="background-image: url('filters/Charmes.jpg');" title="Charmes"></button>
-                <button class="filter-button" data-filter="filter-clarendon" style="background-image: url('filters/Clarendon.jpg');" title="Clarendon"></button>
-                <button class="filter-button" data-filter="filter-crema" style="background-image: url('filters/Crema.jpg');" title="Crema"></button>
-                <button class="filter-button" data-filter="filter-dogpatch" style="background-image: url('filters/Dogpatch.jpg');" title="Dogpatch"></button>
-                <button class="filter-button" data-filter="filter-earlybird" style="background-image: url('filters/Earlybird.jpg');" title="Earlybird"></button>
-                <button class="filter-button" data-filter="filter-gingham" style="background-image: url('filters/Gingham.jpg');" title="Gingham"></button>
-                <button class="filter-button" data-filter="filter-ginza" style="background-image: url('filters/Ginza.jpg');" title="Ginza"></button>
-                <button class="filter-button" data-filter="filter-hefe" style="background-image: url('filters/Hefe.jpg');" title="Hefe"></button>
-                <button class="filter-button" data-filter="filter-helena" style="background-image: url('filters/Helena.jpg');" title="Helena"></button>
-                <button class="filter-button" data-filter="filter-hudson" style="background-image: url('filters/Hudson.jpg');" title="Hudson"></button>
-                <button class="filter-button" data-filter="filter-inkwell" style="background-image: url('filters/Inkwell.jpg');" title="Inkwell"></button>
-                <button class="filter-button" data-filter="filter-kelvin" style="background-image: url('filters/Kelvin.jpg');" title="Kelvin"></button>
-                <button class="filter-button" data-filter="filter-juno" style="background-image: url('filters/Juno.jpg');" title="Juno"></button>
-                <button class="filter-button" data-filter="filter-lark" style="background-image: url('filters/Lark.jpg');" title="Lark"></button>
-                <button class="filter-button" data-filter="filter-lofi" style="background-image: url('filters/lofi.jpg');" title="Lo-Fi"></button>
-                <button class="filter-button" data-filter="filter-ludwig" style="background-image: url('filters/Ludwig.jpg');" title="Ludwig"></button>
-                <button class="filter-button" data-filter="filter-maven" style="background-image: url('filters/Maven.jpg');" title="Maven"></button>
-                <button class="filter-button" data-filter="filter-mayfair" style="background-image: url('filters/Mayfair.jpg');" title="Mayfair"></button>
-                <button class="filter-button" data-filter="filter-moon" style="background-image: url('filters/Moon.jpg');" title="Moon"></button>
-                <button class="filter-button" data-filter="filter-nashville" style="background-image: url('filters/Nashville.jpg');" title="Nashville"></button>
-                <button class="filter-button" data-filter="filter-perpetua" style="background-image: url('filters/Perpetua.jpg');" title="Perpetua"></button>
-                <button class="filter-button" data-filter="filter-poprocket" style="background-image: url('filters/Poprocket.jpg');" title="Poprocket"></button>
-                <button class="filter-button" data-filter="filter-reyes" style="background-image: url('filters/Reyes.jpg');" title="Reyes"></button>
-                <button class="filter-button" data-filter="filter-rise" style="background-image: url('filters/Rise.jpg');" title="Rise"></button>
-                <button class="filter-button" data-filter="filter-sierra" style="background-image: url('filters/Sierra.jpg');" title="Sierra"></button>
-                <button class="filter-button" data-filter="filter-skyline" style="background-image: url('filters/Skyline.jpg');" title="Skyline"></button>
-                <button class="filter-button" data-filter="filter-slumber" style="background-image: url('filters/Slumber.jpg');" title="Slumber"></button>
-                <button class="filter-button" data-filter="filter-stinson" style="background-image: url('filters/Stinson.jpg');" title="Stinson"></button>
-                <button class="filter-button" data-filter="filter-sutro" style="background-image: url('filters/Sutro.jpg');" title="Sutro"></button>
-                <button class="filter-button" data-filter="filter-toaster" style="background-image: url('filters/Toaster.jpg');" title="Toaster"></button>
-                <button class="filter-button" data-filter="filter-valencia" style="background-image: url('filters/Valencia.jpg');" title="Valencia"></button>
-                <button class="filter-button" data-filter="filter-vesper" style="background-image: url('filters/Vesper.jpg');" title="Vesper"></button>
-                <button class="filter-button" data-filter="filter-walden" style="background-image: url('filters/Walden.jpg');" title="Walden"></button>
-                <button class="filter-button" data-filter="filter-willow" style="background-image: url('filters/Willow.jpg');" title="Willow"></button>
-                <button class="filter-button" data-filter="filter-xpro-ii" style="background-image: url('filters/xpro.jpg');" title="X-Pro II"></button>
-            </div>
-        </div>
-        <div id="canvas-container">
-            <canvas id="canvas"></canvas>
-        </div>
-        <button id="download-button">Download Image</button>
+        <!-- <button id="download-button">Download Image</button> -->
     </div>
     <footer>
         <p>Oldstagram &copy; 2025</p>
         <p>Made for fun by heind_</p>
+    </footer>
 </body>
 </html>

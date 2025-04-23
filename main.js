@@ -8,20 +8,28 @@ const ctx = canvas.getContext('2d');
 let currentImage = 0;
 
 const filterButtons = document.querySelectorAll('.filter-button');
+// Select all filter names
+const filterNames = document.querySelectorAll('.filter-name');
 
-filterButtons.forEach(button => {
+filterButtons.forEach((button, index) => {
     button.addEventListener('click', () => {
         const selectedFilter = button.getAttribute('data-filter');
 
-        // remove any existing filter classes
+        // Remove any existing filter classes
         canvasContainer.className = '';
-        // add the selected filter class
+        // Add the selected filter class
         canvasContainer.classList.add(selectedFilter);
 
-        // redraw the image with the filter applied
+        // Redraw the image with the filter applied
         if (currentImage) {
             applyFilterAndRedraw();
         }
+
+        // Remove 'selected' class from all filter names
+        filterNames.forEach(name => name.classList.remove('selected'));
+
+        // Add 'selected' class to the clicked filter's name
+        filterNames[index].classList.add('selected');
     });
 });
 
@@ -101,6 +109,7 @@ const filterOverlays = {
     'filder-hefe': 'overlays/walden.png',
     'filter-sutro': 'overlays/walden.png',
     'filter-brannan': 'overlays/brannan.png',
+    'filter-poprocket': 'overlays/poprocket.png',
 };
 
 // this function applies the selected filter and redraws the image
